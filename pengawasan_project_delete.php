@@ -6,6 +6,11 @@ if (!isset($_SESSION['username'])) {
   header("Location: login.php");
   exit;
 }
+
+if ($_SESSION['level'] == "pegawai") {
+  header("Location: index.php");
+  exit;
+}
   
   include_once "koneksi.php";
 
@@ -16,4 +21,3 @@ if (!isset($_SESSION['username'])) {
   $delete_data = mysqli_query($con, "DELETE FROM pengawasan_pegawai WHERE id_pengawasan=$id_pengawasan AND id_pegawai=$id_pegawai");
 
   header("Location:pengawasan_project.php?id=$id_project");
-?>
